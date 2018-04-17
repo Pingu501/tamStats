@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import Counters from './Container/Counters';
 
@@ -15,7 +15,7 @@ export default class App extends React.Component {
 
 const styles = {
   container: {
-    paddingTop: 100,
+    paddingTop: 30,
     flex: 1
   },
 };

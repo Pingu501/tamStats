@@ -30,7 +30,7 @@ export default class Select extends React.Component {
         >
           <TouchableOpacity
               onPress={this.onToggleSelect}>
-            <Text style={{color: '#c3c3c3'}}>{this.props.selectedValue}</Text>
+            <Text style={{color: '#c3c3c3', fontSize: 20}}>{this.props.selectedValue}</Text>
           </TouchableOpacity>
 
           {this.state.isOpen ? this.renderOptions(this.props.options) : ''}
@@ -47,9 +47,12 @@ export default class Select extends React.Component {
             <TouchableOpacity
                 key={'select-option' + index}
                 onPress={this.onSelectChange(index)}
+                style={{
+                  padding: 12
+                }}
             >
               <Text
-                  style={{borderBottomColor: 'red'}}
+                  style={{fontSize: 22, fontWeight: '500', color: '#999999'}}
               >
                 {option.name}
               </Text>
@@ -61,11 +64,11 @@ export default class Select extends React.Component {
         <View style={{
           position: 'absolute',
           right: 0,
-          marginTop: 24,
-          width: 80,
-          padding: 12,
-          backgroundColor: 'lightgrey',
-          zIndex: 9000,
+          marginTop: 27,
+          width: 100,
+          backgroundColor: '#eaeaea',
+          padding: 4,
+          zIndex: 9000
         }}>
           {pickerItems}
         </View>
@@ -79,7 +82,7 @@ export default class Select extends React.Component {
   onSelectChange = index => {
     return () => {
       this.props.onChange(this.props.options[index].value);
-      this.setState({isOpen: false})
+      this.setState({isOpen: false});
     };
   };
 };

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {Text, TouchableOpacity} from 'react-native';
 
 const Button = props => {
+  const fontSize = (props.size === "large" ? 20 : 12);
+
   return (
       <TouchableOpacity
           onPress={props.onClick}
@@ -14,12 +16,12 @@ const Button = props => {
             margin: 2,
             padding: 2,
             position: 'relative',
-            zIndex: 300,
+            zIndex: -2,
           }}
       >
         <Text style={{
           textAlign: 'center',
-          fontSize: 14,
+          fontSize: fontSize,
           color: 'white',
         }}>{props.title}</Text>
       </TouchableOpacity>
@@ -28,7 +30,12 @@ const Button = props => {
 
 Button.propTypes = {
   title: PropTypes.string.isRequired,
+  size: PropTypes.oneOf('normal', 'large'),
   onClick: PropTypes.func.isRequired,
+};
+
+Button.defaultProps = {
+  size: 'normal'
 };
 
 export default Button;

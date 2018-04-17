@@ -34,7 +34,7 @@ export default class Counters extends React.Component {
           {this.renderCounters()}
 
           <View style={{
-            height: 100,
+            height: 130,
             padding: 12,
             position: 'relative',
           }}>
@@ -46,6 +46,7 @@ export default class Counters extends React.Component {
               zIndex: 0,
             }}>
               <TextInput
+                  style={{fontSize: 20}}
                   placeholder="Name"
                   onChangeText={this.onChangeTransientCounterName}
               />
@@ -55,7 +56,8 @@ export default class Counters extends React.Component {
                       selectedValue={this.state.transientCounter.position}/>
             </View>
             <Button title="Add Counter"
-                    onClick={this.onAddCounter}/>
+                    onClick={this.onAddCounter}
+                    size="large"/>
           </View>
         </View>
     );
@@ -84,6 +86,10 @@ export default class Counters extends React.Component {
     this.setState({
       counters: counters,
       nextCounterId: this.state.nextCounterId + 1,
+      transientCounter: {
+        name: '',
+        position: 'Mitte',
+      },
     });
     this.forceUpdate();
   };
@@ -95,7 +101,12 @@ export default class Counters extends React.Component {
   };
 
   onChangeTransientCounterName = name => {
-    this.setState({transientCounter: {name: name}});
+    this.setState({
+      transientCounter: {
+        name: name,
+        position: this.state.transientCounter.position,
+      },
+    });
   };
 
   onChangeTransientCounterPosition = position => {
