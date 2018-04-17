@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Counter from './Container/Counter'
+import Counters from './Container/Counters';
 
 export default class App extends React.Component {
   render() {
     return (
         <View style={styles.container}>
-          <Counter/>
+          <Counters/>
         </View>
     );
   }

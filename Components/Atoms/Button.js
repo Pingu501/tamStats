@@ -9,10 +9,19 @@ const Button = props => {
           style={{
             flex: 1,
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            backgroundColor: '#8CD867',
+            margin: 2,
+            padding: 2,
+            position: 'relative',
+            zIndex: 300,
           }}
       >
-        <Text>{props.title}</Text>
+        <Text style={{
+          textAlign: 'center',
+          fontSize: 14,
+          color: 'white',
+        }}>{props.title}</Text>
       </TouchableOpacity>
   );
 };
