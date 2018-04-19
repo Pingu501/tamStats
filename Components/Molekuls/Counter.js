@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import Button from '../Atoms/Button';
 import IconButton from '../Atoms/IconButton';
-
-const width = Dimensions.get('window').width;
 
 const toCount = ['Geschlagen', 'Aus', 'Decke', 'Kurz'];
 
@@ -121,13 +119,11 @@ export default class Counter extends React.Component {
 
 const style = StyleSheet.create({
   counter: {
-    width: width,
     padding: 12,
     height: 140,
     alignSelf: 'stretch',
   },
   counterCollapsed: {
-    width: width,
     height: 62,
     padding: 12,
     alignSelf: 'stretch',
