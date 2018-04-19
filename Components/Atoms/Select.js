@@ -25,15 +25,11 @@ export default class Select extends React.Component {
 
   render() {
     return (
-        <View
-            style={{position: 'relative', zIndex: 300}}
-        >
-          <TouchableOpacity
-              onPress={this.onToggleSelect}>
+        <View style={{position: 'relative', zIndex: 300}}>
+          <TouchableOpacity onPress={this.onToggleSelect}>
             <Text style={{color: '#c3c3c3', fontSize: 20}}>{this.props.selectedValue}</Text>
           </TouchableOpacity>
-
-          {this.state.isOpen ? this.renderOptions(this.props.options) : ''}
+          {this.state.isOpen ? this.renderOptions(this.props.options) : <View/>}
         </View>
     );
   }
