@@ -5,6 +5,7 @@ import {Text, TouchableOpacity} from 'react-native';
 const icons = {
   'bin': '🗑',
   'hide': '📵',
+  'undo': '🔙',
 };
 
 export default class IconButton extends React.PureComponent {
@@ -27,5 +28,5 @@ export default class IconButton extends React.PureComponent {
 
   handlePress = () => {
     this.props.onPress();
-  }
+  };
 }

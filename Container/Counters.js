@@ -34,7 +34,7 @@ export default class Counters extends React.Component {
     return (
         <ScrollView style={{
           flex: 1,
-          marginBottom: 20
+          marginBottom: 20,
         }}>
           {this.renderCounters()}
 
@@ -69,7 +69,10 @@ export default class Counters extends React.Component {
   }
 
   renderCounters = () =>
-      this.state.counters.map((counterEntry) => counterEntry.counter);
+      this.state.counters.map(
+          (counterEntry) => {
+            return counterEntry.counter;
+          });
 
   onAddCounter = () => {
     const counter = <Counter name={this.state.transientCounter.name}
@@ -112,7 +115,6 @@ export default class Counters extends React.Component {
   };
 
   onChangeTransientCounterName = name => {
-    console.log(name);
     this.setState({
       transientCounter: {
         name: name,

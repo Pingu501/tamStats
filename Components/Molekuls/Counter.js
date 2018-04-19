@@ -34,7 +34,6 @@ export default class Counter extends React.Component {
     });
 
     state.history = [];
-
     this.state = state;
   }
 
@@ -50,6 +49,7 @@ export default class Counter extends React.Component {
             <View style={style.controlButtons}>
               <IconButton icon="bin" onPress={this.handleRemoveCounter}/>
               <IconButton icon="hide" onPress={this.onToggleVisibility}/>
+              <IconButton icon="undo" onPress={this.onUndo}/>
             </View>
           </View>
 
@@ -81,8 +81,27 @@ export default class Counter extends React.Component {
 
   onToggleVisibility = () => this.setState({isVisible: !this.state.isVisible});
 
+  onUndo = () => {
+    const history = this.state.history;
+
+    if (history.length === 0) {
+      return;
+    }
+
+    const lastAction = history.pop();
+    const countProps = this.state.countProps;
+    countProps[lastAction]--;
+    this.setState({
+      history: history,
+      countProps: countProps,
+
+    });
+  };
+
   handleCountUp = countProp => {
     return () => {
+      const history = this.state.history;
+      history.push(countProp);
       this.setState(
           {
             countProps:
@@ -90,6 +109,7 @@ export default class Counter extends React.Component {
                   ...this.state.countProps,
                   [countProp]: this.state.countProps[countProp] + 1,
                 },
+            history,
           });
     };
   };
