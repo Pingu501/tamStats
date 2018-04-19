@@ -53,9 +53,11 @@ export default class Counter extends React.Component {
             </View>
           </View>
 
-          {this.state.isVisible ? <View style={style.buttonRow}>
-            {this.renderCountPropButtons()}
-          </View> : ''}
+          {this.state.isVisible
+              ? <View style={style.buttonRow}>
+                {this.renderCountPropButtons()}
+              </View>
+              : ''}
         </View>
     );
   }

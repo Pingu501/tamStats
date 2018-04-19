@@ -83,10 +83,6 @@ export default class Counters extends React.Component {
     this.setState({
       counters: counters,
       nextCounterId: this.state.nextCounterId + 1,
-      transientCounter: {
-        name: '',
-        position: 'Mitte',
-      },
     });
     this.forceUpdate();
   };
@@ -99,6 +95,7 @@ export default class Counters extends React.Component {
   };
 
   onChangeTransientCounterName = name => {
+    console.log(name);
     this.setState({
       transientCounter: {
         name: name,
@@ -108,6 +105,11 @@ export default class Counters extends React.Component {
   };
 
   onChangeTransientCounterPosition = position => {
-    this.setState({transientCounter: {position: position}});
+    this.setState({
+      transientCounter: {
+        position: position,
+        name: this.state.transientCounter.name,
+      },
+    });
   };
 }
