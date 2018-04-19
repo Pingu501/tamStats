@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextInput, View, Alert} from 'react-native';
+import {TextInput, View, Alert, ScrollView} from 'react-native';
 import Counter from '../Components/Molekuls/Counter';
 import Button from '../Components/Atoms/Button';
 import Select from '../Components/Atoms/Select';
@@ -32,8 +32,9 @@ export default class Counters extends React.Component {
 
   render() {
     return (
-        <View style={{
+        <ScrollView style={{
           flex: 1,
+          marginBottom: 20
         }}>
           {this.renderCounters()}
 
@@ -63,7 +64,7 @@ export default class Counters extends React.Component {
                     onClick={this.onAddCounter}
                     size="large"/>
           </View>
-        </View>
+        </ScrollView>
     );
   }
 

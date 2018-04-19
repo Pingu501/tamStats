@@ -16,6 +16,6 @@ export default class App extends React.Component {
 const styles = {
   container: {
     paddingTop: 30,
-    flex: 1
+    flex: 1,
   },
 };
