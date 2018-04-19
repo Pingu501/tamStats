@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextInput, View} from 'react-native';
+import {TextInput, View, Alert} from 'react-native';
 import Counter from '../Components/Molekuls/Counter';
 import Button from '../Components/Atoms/Button';
 import Select from '../Components/Atoms/Select';
@@ -88,10 +88,26 @@ export default class Counters extends React.Component {
   };
 
   onRemoveCounter = counterId => {
-    console.log(counterId);
-    let counters = this.state.counters;
-    counters = counters.filter((entry) => entry.id !== counterId);
-    this.setState({counters: counters});
+    Alert.alert(
+        'Remove Counter',
+        'Are you sure you want to remove this counter?',
+        [
+          {
+            text: 'Yes',
+            onPress: () => {
+              let counters = this.state.counters;
+              counters = counters.filter((entry) => entry.id !== counterId);
+              this.setState({counters: counters});
+            },
+          },
+          {
+            text: 'Cancel',
+            onPress: () => {},
+            style: 'cancel',
+          },
+        ],
+        {cancelable: false},
+    );
   };
 
   onChangeTransientCounterName = name => {
