@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import Button from '../Atoms/Button';
+import IconButton from '../Atoms/IconButton';
 
 const width = Dimensions.get('window').width;
 
@@ -28,30 +29,33 @@ export default class Counter extends React.Component {
     let state = {...props};
 
     state.countProps = {};
-
     toCount.forEach(countProp => {
       state.countProps[countProp] = 0;
     });
+
+    state.history = [];
 
     this.state = state;
   }
 
   render() {
-    if (!this.state.isVisible) {
-      return;
-    }
-
     return (
-        <View style={style.counter}>
+        <View style={this.state.isVisible
+            ? style.counter
+            : style.counterCollapsed}>
           <View style={style.infoRow}>
             <Text style={style.infoRowText}>
               {this.props.name}: {this.props.position}
             </Text>
-            <Button onClick={this.handleRemoveCounter} title="Remove"/>
+            <View style={style.controlButtons}>
+              <IconButton icon="bin" onPress={this.handleRemoveCounter}/>
+              <IconButton icon="hide" onPress={this.onToggleVisibility}/>
+            </View>
           </View>
-          <View style={style.buttonRow}>
+
+          {this.state.isVisible ? <View style={style.buttonRow}>
             {this.renderCountPropButtons()}
-          </View>
+          </View> : ''}
         </View>
     );
   }
@@ -72,6 +76,8 @@ export default class Counter extends React.Component {
 
     return buttons;
   };
+
+  onToggleVisibility = () => this.setState({isVisible: !this.state.isVisible});
 
   handleCountUp = countProp => {
     return () => {
@@ -94,24 +100,35 @@ export default class Counter extends React.Component {
 const style = StyleSheet.create({
   counter: {
     width: width,
+    padding: 12,
     height: 140,
+    alignSelf: 'stretch',
+  },
+  counterCollapsed: {
+    width: width,
+    height: 62,
+    padding: 12,
     alignSelf: 'stretch',
   },
   infoRow: {
     flex: 1,
-    padding: 12,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
   },
   infoRowText: {
-    fontSize: 18,
+    flex: 5,
+    fontSize: 20,
     color: '#7d7d7d',
   },
   buttonRow: {
-    flex: 3,
+    flex: 2,
     flexDirection: 'row',
     justifyContent: 'center',
-    padding: 12,
+  },
+  controlButtons: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
 });

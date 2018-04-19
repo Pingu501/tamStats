@@ -11,13 +11,17 @@ const positionOptions = [
 ];
 
 export default class Counters extends React.Component {
-  static propTypes = {};
-
   constructor(props) {
     super(props);
 
+    const initCounter = <Counter name="Klaus" position="Mitte"
+                                 onRemoveCounter={this.onRemoveCounter}
+                                 id={9}/>;
+
     this.state = {
-      counters: [],
+      counters: [
+        {id: 9, counter: initCounter},
+      ],
       nextCounterId: 10,
       transientCounter: {
         name: '',
@@ -63,15 +67,8 @@ export default class Counters extends React.Component {
     );
   }
 
-  renderCounters = () => {
-    return (
-        <View>
-          {this.state.counters.map((counterEntry) => {
-            return counterEntry.counter;
-          })}
-        </View>
-    );
-  };
+  renderCounters = () =>
+      this.state.counters.map((counterEntry) => counterEntry.counter);
 
   onAddCounter = () => {
     const counter = <Counter name={this.state.transientCounter.name}
@@ -95,6 +92,7 @@ export default class Counters extends React.Component {
   };
 
   onRemoveCounter = counterId => {
+    console.log(counterId);
     let counters = this.state.counters;
     counters = counters.filter((entry) => entry.id !== counterId);
     this.setState({counters: counters});
