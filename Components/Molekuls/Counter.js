@@ -10,14 +10,12 @@ export default class Counter extends React.Component {
   static defaultProps = {
     name: 'Klaus',
     position: 'Links',
-    isVisible: true,
   };
 
   static propTypes = {
     id: PropTypes.number,
     name: PropTypes.string.isRequired,
     position: PropTypes.oneOf(['Links', 'Mitte', 'Rechts']).isRequired,
-    isVisible: PropTypes.bool,
     onRemoveCounter: PropTypes.func.isRequired,
   };
 
@@ -32,6 +30,7 @@ export default class Counter extends React.Component {
     });
 
     state.history = [];
+    state.isVisible = true;
     this.state = state;
   }
 
@@ -45,9 +44,9 @@ export default class Counter extends React.Component {
               {this.props.name}: {this.props.position}
             </Text>
             <View style={style.controlButtons}>
-              <IconButton icon="bin" onPress={this.handleRemoveCounter}/>
-              <IconButton icon="hide" onPress={this.onToggleVisibility}/>
+              <IconButton icon="trash" onPress={this.handleRemoveCounter}/>
               <IconButton icon="undo" onPress={this.onUndo}/>
+              <IconButton icon={this.state.isVisible ? 'hide' : 'show'} onPress={this.onToggleVisibility}/>
             </View>
           </View>
 

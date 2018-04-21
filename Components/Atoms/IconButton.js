@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Text, TouchableOpacity} from 'react-native';
+import {Image, Text, TouchableOpacity} from 'react-native';
 
 const icons = {
-  'bin': '🗑',
-  'hide': '📵',
-  'undo': '🔙',
+  'trash': require('../../Assets/Icons/delete.png'),
+  'hide': require('../../Assets/Icons/eye.png'),
+  'show': require('../../Assets/Icons/eye-off.png'),
+  'undo': require('../../Assets/Icons/skip-backward.png'),
 };
+
+const iconSize = 28;
 
 export default class IconButton extends React.PureComponent {
 
@@ -21,7 +24,8 @@ export default class IconButton extends React.PureComponent {
             onPress={this.handlePress}
             style={{marginLeft: 18}}
         >
-          <Text style={{fontSize: 20}}>{icons[this.props.icon]}</Text>
+          <Image source={icons[this.props.icon]}
+                 style={{width: iconSize, height: iconSize}}/>
         </TouchableOpacity>
     );
   }

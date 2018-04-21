@@ -19,7 +19,7 @@ export default class Button extends React.Component {
               flex: 1,
               justifyContent: 'center',
               alignItems: 'center',
-              backgroundColor: '#8CD867',
+              backgroundColor: '#87D86B',
               margin: 2,
               padding: 2,
               position: 'relative',
