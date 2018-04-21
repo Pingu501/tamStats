@@ -69,7 +69,7 @@ export default class Counters extends React.Component {
   }
 
   renderCounters = () => this.state.counters.map(
-      counterEntry => counterEntry.counter);
+      (counterEntry, id) => <View key={id}>{counterEntry.counter}</View>);
 
   onAddCounter = () => {
     const counter = <Counter name={this.state.transientCounter.name}
